@@ -12,21 +12,100 @@
 
 ### 3 - Brincar na Docker Store, encontrar imagens e rodar alguns exemplos
 
+Rodar um container de forma interativa (-it)
+```sh
+docker run -it debian bash
+``` 
+
+Remove um container apos utilizar ele (--rm)
+```sh
+docker run -it --rm debian bash
+``` 
+
+```sh
+docker run -d --name some-ghost -p 3001:2368 ghost
+``` 
+Visualisar containers em execução
+```sh
+docker ps
+``` 
+Visualisar todos os containers na maquina
+```sh
+docker ps -a
+``` 
+Para matar containers em execução
+```sh
+docker kill [id]
+``` 
+Para remover containers da maquina
+```sh
+docker rm [id]
+``` 
+Inicia um container parado
+```sh
+docker start [id]
+``` 
+Entra em um container inciado
+```sh
+docker exect -ir [id] bash
+``` 
+
+Baixa a imagem (verifica se está atualizada)
+```sh
+docker pull docker.io/library/neo4j:2.3.3
+``` 
+
+
 ---
 
 ### 4 - Sub-comando `volume`
-
+Usando debian com volume mapeado
+```sh
+docker run -it --rm -v  C:\Users\bruno.rodrigo\php\volume-debian:/volume1 debian:jessie bash
+``` 
 #### 4.1 - Analisar a opções do comando `docker volume --help`
+
+Possibilidades: Criar volumes, inspecionar, listar, apagar um volume
 
 #### 4.2 - Listar, Criar, Remover e Inspecionar os volumes nomeados.
 
-#### 4.3 - Remover todos os volumes que não estão conectados a um container, com 1 único container
+Criando volume:
+```sh
+docker volume create um-volume
+```
 
+Usando volume nomeado em dois containers de duas imagens diferentes:
+
+```sh
+docker run -it --rm -v  um-volume:/volume1 alpine bash
+```
+
+```sh
+docker run -it --rm -v  um-volume:/volume1 debian:jessie bash
+```
+
+Removendo um unico volume
+```sh
+docker volume rm  um-volume
+```
+
+docker image pull ou docker pull Baixa uma imgem
+
+#### 4.3 - Remover todos os volumes que não estão conectados a um container, com 1 único container
+```sh
+docker volume prune
+```
 ---
 
 ### 5 - Sub-comando `image`
 
 #### 5.1 - Listar, Baixar, Remover e inspecionar imagens com o comando `docker image`
+
+Lista todos as imagens/tags baixadas
+```sh
+docker image ls
+```
+
 
 #### 5.2 - Baixar pelo menos mais de 1 tag de uma imagem (exemplo: ubuntu:16.04 e ubuntu:17.04)
 
@@ -55,15 +134,25 @@
 #### 7.1 - Parar um container em execução com o commando `docker stop`
 
 #### 7.2 - Parar um container em execução com o comando `docker kill`
+Não consegui saber diferença
+
 
 #### 7.3 - Remover um container existente já parado
 
 #### 7.4 - Remover um container que está em execução, a força
+```sh
+docker rm --force [id]
+```
+
 
 #### 7.5 - Listar os containers em execução.
-
+```sh
+docker ps
+```
 #### 7.6 - Listar os containers existente, que não estão em execução.
-
+```sh
+docker ps -a
+```
 #### 7.7 - Parar todos os containers em execução com 1 único comando
 
 #### 7.8 - Remover todos os containers parados com 1 único comando
