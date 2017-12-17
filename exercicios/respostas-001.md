@@ -55,6 +55,11 @@ Baixa a imagem (verifica se está atualizada)
 docker pull docker.io/library/neo4j:2.3.3
 ``` 
 
+Rodando container MYSQL
+```sh
+docker run -it --rm -p 3333:3306 -v mysql-curso:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=docker -e MYSQL_DATABASE=docker -e MYSQL_USER=docker -e MYSQL_PASSWORD=docker mysql:5.7
+``` 
+
 
 ---
 
