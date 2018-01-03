@@ -55,12 +55,14 @@ Baixa a imagem (verifica se está atualizada)
 docker pull docker.io/library/neo4j:2.3.3
 ``` 
 
-Rodando container MYSQL danbo nome de 'banco'
+Rodando container MYSQL dando nome de 'banco'
 ```sh
 docker run -it --rm -p 3333:3306 -v mysql-curso:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=docker -e MYSQL_DATABASE=docker -e MYSQL_USER=docker -e MYSQL_PASSWORD=docker --name banco mysql:5.7
 ``` 
-
-
+Com essa container nomeado, é possivel criar um link de rede como o container utilizando o parametro --link (a imagem abaixo nao tem cliente mysql)
+```sh
+docker run -it --rm --link banco:banco debian:jessie bash
+``` 
 ---
 
 ### 4 - Sub-comando `volume`
