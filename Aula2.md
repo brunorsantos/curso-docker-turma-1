@@ -35,7 +35,7 @@ Uma possibilidade tambem adicionar um arquivo na imagem
 
 ```sh
 ADD my.cnf /etc/mysql/my.cnf
-```sh
+```
 
 Para criar a imagem usa o docker build, sendo com o parametro -t da o nome da imagem e deve se obrigatoriamente passar o contexto atual da imagem(neste caso o diretorio atual passando '.') 
 
@@ -45,9 +45,7 @@ docker build -t curso-docker/mysql-client .
 
 Na execução do comando, é exibido todos os passos para a criacao da imagem. E é efetivada a criação.
 
-
-
-Sendo assim, pode ser executar um container da imagem criada.
+Sendo assim, pode se executar um container da imagem criada.
 
 ```sh
 docker run -it --rm curso-docker/mysql-client bash
