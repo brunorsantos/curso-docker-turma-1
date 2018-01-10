@@ -1,0 +1,30 @@
+#docker compose syntax v3
+version: '3'
+
+volumes:
+  mysql-data:
+    driver: local
+
+# services definition
+services:
+
+  # MySql Definition
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - mysql-data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=wpdocker
+      - MYSQL_DATABASE=wpdocker
+      - MYSQL_USER=wpdocker
+      - MYSQL_PASSWORD=wpdocker    
+   #application Definition   
+  app:
+     image: ambientum/php:7.1-nginx
+     volumes:
+       - .:/var/www/app/public
+     links:
+       - mysql:mysql
+     ports:
+       - 8080:8080
+     
