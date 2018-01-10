@@ -2,7 +2,7 @@
 
 ---
 
-### 1 - Construção de imagem(Dockerfile)
+## 1 - Construção de imagem(Dockerfile)
 
 Deve ser criado um diretorio em que se é incluido o arquivo Dockerfile(exemplo com mysql-client)
 
@@ -50,6 +50,59 @@ Sendo assim, pode se executar um container da imagem criada.
 ```sh
 docker run -it --rm curso-docker/mysql-client bash
 ``` 
+---
 
+## 1 - Docker compose - Orquestrando containers
+
+É uma forma de subir vários containers ao mesmo tempo
+
+### Instruções
+
+Criar um arquivo docker-compose.yml
+exemplo na pasta wordpress
+
+Deve se inciar com a versao de sintaxe do docker-compose que o arquivo utilizará
+
+```yml
+version '3'
+``` 
+---
+Na sessão volumes são criados os volumes que poderão ainda vir a ser utilizados no container
 
 ---
+
+Na sessão services, é onde são definidos os containers a serem utilizados e orquestrados
+
+Exemplo:
+
+
+
+
+#### Environment
+Onde são definidas as variaveis de ambiente do container, assim como o parametro -e do comando 'docker run'
+
+#### Volumes
+Utiliza os volumes previamente criados, simula o funcionamento do paramentro -v
+
+
+
+### Comandos
+```sh
+docker-compose up
+``` 
+Executa os containers, 
+Cada container é criado com o nome definido no arquivo precedido pelo nome do diretorio e sucedido com um numero sequenciala, que é utilizado para diferenciar containers como o mesmo nome no docker-compose.yml.
+
+---
+```sh
+docker-compose ps
+``` 
+Exibe processos do docker-compose
+
+---
+```sh
+docker-compose down
+``` 
+Mata os containers (parar os containers com ctrl +c nao mata eles)
+---
+
