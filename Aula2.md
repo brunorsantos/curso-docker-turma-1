@@ -71,12 +71,34 @@ Na sessão volumes são criados os volumes que poderão ainda vir a ser utilizad
 
 ---
 
-Na sessão services, é onde são definidos os containers a serem utilizados e orquestrados
+Na sessão services, é onde são definidos os containers a serem utilizados e orquestrados,
 
 Exemplo:
 
+```yml
+services:
 
-
+  # MySql Definition
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - mysql-data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=wpdocker
+      - MYSQL_DATABASE=wpdocker
+      - MYSQL_USER=wpdocker
+      - MYSQL_PASSWORD=wpdocker    
+   #application Definition   
+  app:
+     image: ambientum/php:7.1-nginx
+     volumes:
+       - .:/var/www/app/public
+     links:
+       - mysql:mysql
+     ports:
+       - 8080:8080
+     
+```
 
 #### Environment
 Onde são definidas as variaveis de ambiente do container, assim como o parametro -e do comando 'docker run'
@@ -84,7 +106,11 @@ Onde são definidas as variaveis de ambiente do container, assim como o parametr
 #### Volumes
 Utiliza os volumes previamente criados, simula o funcionamento do paramentro -v
 
+#### Links
+Linka os containers, possibilitando o acesso de rede entre eles. Assim como o funcionamento do paramtro --link
 
+#### Ports
+Mapeia portas, como o parametro -p
 
 ### Comandos
 ```sh
@@ -103,6 +129,7 @@ Exibe processos do docker-compose
 ```sh
 docker-compose down
 ``` 
+
 Mata os containers (parar os containers com ctrl +c nao mata eles)
 ---
 
